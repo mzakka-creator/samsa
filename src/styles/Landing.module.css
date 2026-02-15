@@ -35,15 +35,43 @@
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #1a1a1a;
+  display: flex;
+  align-items: center;
   transition: all 0.3s ease;
 }
 
-.logo:hover {
-  letter-spacing: 0.15em;
+.logoImage {
+  height: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logoImage {
+  transform: scale(1.05);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.languageToggle {
+  background: none;
+  border: 2px solid #1a1a1a;
+  color: #1a1a1a;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-family: 'Cairo', 'Orienta', sans-serif;
+}
+
+.languageToggle:hover {
+  background: #1a1a1a;
+  color: #ffffff;
 }
 
 .nav {
@@ -80,6 +108,69 @@
   width: 100%;
 }
 
+/* Mobile Menu Toggle */
+.mobileMenuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  width: 28px;
+  height: 28px;
+}
+
+.hamburger {
+  position: relative;
+  width: 28px;
+  height: 2px;
+  background: #1a1a1a;
+  transition: all 0.3s ease;
+  display: block;
+  left: 0;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background: #1a1a1a;
+  transition: all 0.3s ease;
+  left: 0;
+  display: block;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  bottom: -8px;
+}
+
+.hamburgerOpen {
+  background: transparent;
+}
+
+.hamburgerOpen::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.hamburgerOpen::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+.mobileMenuBackdrop {
+  display: none;
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -90,48 +181,101 @@
   position: relative;
   background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
   padding: 0 3rem;
+  overflow: hidden;
+}
+
+.diagonalGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 50px,
+      rgba(26, 26, 26, 0.08) 50px,
+      rgba(26, 26, 26, 0.08) 51px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 50px,
+      rgba(26, 26, 26, 0.08) 50px,
+      rgba(26, 26, 26, 0.08) 51px
+    );
+  mask-image: radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 1) 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.6) 60%,
+    rgba(0, 0, 0, 1) 80%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 .heroContent {
   max-width: 1200px;
   text-align: center;
   animation: fadeInUp 1s ease;
-}
-
-.heroTitle {
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
-  color: #1a1a1a;
-}
-
-.heroTitleLine {
-  display: inline-block;
-  animation: slideInLeft 0.8s ease;
   position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.heroTitleLine::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
+.heroLogo {
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroLogoImage {
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #1a1a1a 0%, #6a6a6a 100%);
+  height: auto;
+  max-width: 400px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
 }
 
 .heroTagline {
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   color: #4a4a4a;
   max-width: 700px;
-  margin: 0 auto 3rem;
-  line-height: 1.6;
+  margin: 0 auto;
+  line-height: 1.8;
   animation: fadeIn 1s ease 0.3s backwards;
   font-weight: 400;
   letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
 }
 
 .heroButtons {
@@ -200,7 +344,29 @@
   bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 2s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.scrollIndicator:hover {
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.scrollText {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a4a4a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fadeIn 1s ease 1s backwards;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .scrollArrow {
@@ -209,6 +375,7 @@
   border-left: 2px solid #4a4a4a;
   border-bottom: 2px solid #4a4a4a;
   transform: rotate(-45deg);
+  animation: bounceHorizontal 2s infinite;
 }
 
 /* About Section */
@@ -243,77 +410,209 @@
   background: #1a1a1a;
 }
 
-.aboutGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.aboutText {
-  animation: fadeInLeft 0.8s ease;
-}
-
-.aboutParagraph {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #4a4a4a;
-  margin-bottom: 1.5rem;
-  text-align: justify;
-}
-
-.aboutStats {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  animation: fadeInRight 0.8s ease;
-}
-
-.statCard {
-  padding: 2rem;
-  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-  transition: all 0.3s ease;
+/* Mother Company Section */
+.motherCompany {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  padding: 3rem;
+  margin-bottom: 4rem;
   position: relative;
   overflow: hidden;
+  animation: fadeInUp 0.8s ease;
 }
 
-.statCard::before {
+.motherCompany::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
-  transition: left 0.3s ease;
-  z-index: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(30%, -30%);
 }
 
-.statCard:hover::before {
-  left: 0;
+.companyHeader {
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
-.statCard:hover {
-  transform: translateX(10px);
-  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.1);
+
+.companyDescription {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.companyStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.statItem {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.statItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .statNumber {
   font-size: 3rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: #ffffff;
   margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 1;
 }
 
 .statLabel {
-  font-size: 1rem;
-  color: #4a4a4a;
+  font-size: 0.95rem;
+  color: #b0b0b0;
   font-weight: 500;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Subsidiary Brands Section */
+.subsidiarySection {
+  animation: fadeIn 0.8s ease 0.3s backwards;
+}
+
+.subsidiaryTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 3rem;
   position: relative;
-  z-index: 1;
+  letter-spacing: 0.05em;
+}
+
+.subsidiaryTitle::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: #1a1a1a;
+}
+
+.brandsHierarchy {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.brandCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.subsidiaryBrandCard {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  cursor: pointer;
+}
+
+.subsidiaryBrandCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1a1a1a 0%, #4a4a4a 100%);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.subsidiaryBrandCard:hover::before {
+  transform: scaleX(1);
+}
+
+.subsidiaryBrandCard:hover {
+  border-color: #1a1a1a;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.brandIcon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.subsidiaryBrandCard:hover .brandIcon {
+  transform: rotate(360deg) scale(1.1);
+  background: linear-gradient(135deg, #3a3a3a 0%, #1a1a1a 100%);
+}
+
+.brandLogoContainer {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.brandLogoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.4s ease;
+}
+
+.subsidiaryBrandCard:hover .brandLogoImage {
+  transform: scale(1.1);
+}
+
+.subsidiaryBrandTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.subsidiaryBrandDesc {
+  font-size: 1rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* Brands Section */
@@ -330,51 +629,63 @@
   font-weight: 400;
 }
 
-.brandsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+.brandsScrollContainer {
+  overflow: hidden;
   margin-top: 3rem;
+  padding: 10px 0;
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.brandsScrollTrack {
+  display: flex;
+  width: 100%;
+  padding: 5px 0;
+}
+
+.brandsScroll {
+  display: flex;
+  gap: 2rem;
+  animation: scrollInfinite 40s linear infinite;
+  will-change: transform;
+}
+
+.brandsScrollContainer:hover .brandsScroll {
+  animation-play-state: paused;
 }
 
 .brandCard {
   background: #ffffff;
-  padding: 3rem 2rem;
+  padding: 2.5rem 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   border: 1px solid #e0e0e0;
-}
-
-.brandCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: #1a1a1a;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-}
-
-.brandCard:hover::before {
-  opacity: 1;
-  transform: scale(1);
+  border-radius: 12px;
+  flex-shrink: 0;
+  min-width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .brandCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  border-color: #1a1a1a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .brandName {
@@ -384,11 +695,6 @@
   letter-spacing: 0.05em;
   position: relative;
   z-index: 2;
-  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.brandCard:hover .brandName {
-  color: #ffffff;
 }
 
 /* Footer */
@@ -402,21 +708,30 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid #3a3a3a;
+}
+
+.footerLinks {
+  animation: fadeIn 0.8s ease 0.1s backwards;
 }
 
 .footerBrand {
   animation: fadeIn 0.8s ease;
 }
 
-.footerLogo {
-  font-size: 2rem;
-  font-weight: 700;
+.footerLogoContainer {
   margin-bottom: 1rem;
-  letter-spacing: 0.1em;
+}
+
+.footerLogoImage {
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .footerTagline {
@@ -449,6 +764,9 @@
   transition: all 0.3s ease;
   position: relative;
   width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .contactLink::after {
@@ -469,6 +787,19 @@
 
 .contactLink:hover::after {
   width: 100%;
+}
+
+.contactIcon {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactLink:hover .contactIcon {
+  transform: scale(1.1);
 }
 
 .footerBottom {
@@ -537,16 +868,59 @@
   }
 }
 
-@keyframes bounce {
+@keyframes bounceHorizontal {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
+    transform: rotate(-45deg);
+    margin-left: 0;
   }
   40% {
-    transform: translateX(-50%) translateY(-10px);
+    transform: rotate(-45deg);
+    margin-left: 10px;
   }
   60% {
-    transform: translateX(-50%) translateY(-5px);
+    transform: rotate(-45deg);
+    margin-left: 5px;
   }
+}
+
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .nav {
+  direction: rtl;
+}
+
+[dir="rtl"] .navLink::after {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .scrollIndicator {
+  transform: translateX(-50%);
+}
+
+[dir="rtl"] .scrollIndicator:hover {
+  transform: translateX(-50%) translateY(-5px);
+}
+
+[dir="rtl"] .scrollText {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+[dir="rtl"] .contactLink:hover {
+  transform: translateX(-5px);
+}
+
+[dir="rtl"] .phoneLink {
+  flex-direction: row-reverse;
 }
 
 /* Responsive Design */
@@ -559,19 +933,41 @@
     gap: 1.5rem;
   }
 
-  .aboutGrid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+  .motherCompany {
+    padding: 2.5rem 2rem;
+    margin-bottom: 3rem;
   }
 
-  .brandsGrid {
-    grid-template-columns: repeat(3, 1fr);
+
+  .companyDescription {
+    font-size: 1.1rem;
+  }
+
+  .companyStats {
     gap: 1.5rem;
   }
 
-  .footerContent {
+  .brandsHierarchy {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 1.5rem;
+  }
+
+  .brandsScroll {
+    gap: 1.5rem;
+  }
+
+  .brandCard {
+    min-width: 180px;
+    padding: 2rem 2.5rem;
+  }
+
+  .footerContent {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1;
   }
 }
 
@@ -580,20 +976,81 @@
     padding: 1rem 1.5rem;
   }
 
-  .logo {
-    font-size: 1.5rem;
+  .logoImage {
+    width: 100px;
+    height: auto;
+  }
+
+  .heroLogoImage {
+    max-width: 280px;
+  }
+
+  /* Mobile Navigation */
+  .headerActions {
+    gap: 0.8rem;
+  }
+
+  .languageToggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .mobileMenuToggle {
+    display: flex;
+  }
+
+  .mobileMenuBackdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    animation: fadeIn 0.3s ease;
   }
 
   .nav {
-    gap: 1rem;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6rem 2rem 2rem;
+    gap: 2rem;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .navOpen {
+    right: 0;
   }
 
   .navLink {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .navLink::after {
+    bottom: 0;
   }
 
   .hero {
     padding: 0 1.5rem;
+    min-height: 90vh;
+  }
+
+  .heroContent {
+    padding: 3rem 2rem;
+    border-radius: 20px;
   }
 
   .heroButtons {
@@ -605,58 +1062,321 @@
   .btnSecondary {
     width: 100%;
     max-width: 300px;
+    padding: 0.9rem 2rem;
+  }
+
+  .scrollIndicator {
+    bottom: 2rem;
+  }
+
+  .scrollText {
+    font-size: 0.85rem;
+  }
+
+  .scrollArrow {
+    width: 25px;
+    height: 25px;
   }
 
   .about,
   .brands {
-    padding: 5rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 
-  .brandsGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .sectionTitle {
+    margin-bottom: 3rem;
+  }
+
+  .motherCompany {
+    padding: 2rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+
+  .companyDescription {
+    font-size: 1rem;
+  }
+
+  .companyStats {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .brandCard {
-    padding: 2rem 1rem;
+  .statItem {
+    padding: 1.5rem 1rem;
+  }
+
+  .statNumber {
+    font-size: 2.5rem;
+  }
+
+  .subsidiaryTitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .brandsHierarchy {
+    gap: 1.5rem;
+  }
+
+  .subsidiaryBrandCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .brandIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+
+  .brandLogoContainer {
+    width: 100px;
+    height: 100px;
+  }
+
+  .subsidiaryBrandTitle {
+    font-size: 1.3rem;
+  }
+
+  .subsidiaryBrandDesc {
+    font-size: 0.95rem;
+  }
+
+  .brandsScroll {
+    gap: 1.2rem;
+    animation: scrollInfinite 35s linear infinite;
+  }
+
+
+  .brandName {
+    font-size: 1rem;
   }
 
   .footer {
     padding: 3rem 1.5rem 1.5rem;
   }
+
+  .footerLogoImage {
+    max-width: 130px;
+  }
+
+  .footerTitle {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .headerContent {
+    padding: 1rem 1.2rem;
+  }
+
+  .logoImage {
+    width: 90px;
+    height: auto;
+  }
+
+  .languageToggle {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .heroLogo {
+    margin-bottom: 1.5rem;
+  }
+
+  .heroLogoImage {
+    max-width: 240px;
+  }
+
   .nav {
-    display: none;
+    width: 80%;
+    max-width: 100%;
   }
 
-  .logo {
-    font-size: 1.3rem;
+  .hero {
+    padding: 0 1.2rem;
+    min-height: 85vh;
   }
 
-  .heroTitle {
-    font-size: 2.5rem;
+  .heroContent {
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
   }
 
   .heroTagline {
     font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    padding: 0.85rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .scrollIndicator {
+    bottom: 1.5rem;
+  }
+
+  .scrollText {
+    font-size: 0.75rem;
+  }
+
+  .scrollArrow {
+    width: 22px;
+    height: 22px;
+  }
+
+  .about,
+  .brands {
+    padding: 3rem 1.2rem;
   }
 
   .sectionTitle {
     font-size: 2rem;
+    margin-bottom: 2.5rem;
   }
 
-  .brandsGrid {
-    grid-template-columns: 1fr;
+  .sectionTitle::after {
+    width: 60px;
+    height: 2px;
   }
 
-  .statCard {
-    padding: 1.5rem;
+  .motherCompany {
+    padding: 2rem 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .motherCompany::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  .companyHeader {
+    margin-bottom: 2rem;
+  }
+
+
+  .companyDescription {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .companyStats {
+    gap: 1rem;
+  }
+
+  .statItem {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .statItem:hover {
+    transform: translateY(-3px);
   }
 
   .statNumber {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+
+  .statLabel {
+    font-size: 0.85rem;
+  }
+
+  .subsidiaryTitle {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .subsidiaryTitle::before {
+    width: 30px;
+    height: 2px;
+    top: -10px;
+  }
+
+  .subsidiaryBrandCard {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .subsidiaryBrandCard:hover {
+    transform: translateY(-5px);
+  }
+
+  .brandIcon {
+    width: 55px;
+    height: 55px;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .brandLogoContainer {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1.2rem;
+  }
+
+  .subsidiaryBrandTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .subsidiaryBrandDesc {
+    font-size: 0.9rem;
+  }
+
+  .brandsSubtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .brandsScroll {
+    gap: 1rem;
+    animation: scrollInfinite 30s linear infinite;
+  }
+
+  .brandCard {
+    min-width: 150px;
+    padding: 1.8rem 2rem;
+  }
+
+  .brandCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .brandName {
+    font-size: 1.1rem;
+  }
+
+  .footer {
+    padding: 2.5rem 1.2rem 1.5rem;
+  }
+
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footerBrand {
+    grid-column: 1;
+  }
+
+  .footerLogoImage {
+    max-width: 120px;
+  }
+
+  .footerTagline {
+    font-size: 0.9rem;
+  }
+
+  .footerTitle {
+    font-size: 1.1rem;
+  }
+
+  .contactLink {
+    font-size: 0.9rem;
+  }
+
+  .footerCopy {
+    font-size: 0.85rem;
   }
 }
 
