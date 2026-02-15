@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 import styles from "@/styles/Landing.module.css";
 import logo from "@/assets/logo.png";
 import newLogo from "@/assets/new logo.png";
@@ -325,11 +327,11 @@ export default function Home() {
               <h4 className={styles.footerTitle}>{t.footer.contactTitle}</h4>
               <div className={styles.contactInfo}>
                 <a href="mailto:esam@sam.sa" className={`${styles.contactLink} ${styles.emailLink}`}>
-                  <span className={styles.contactIcon}>✉︎</span>
+                  <MdOutlineAlternateEmail className={styles.contactIcon} />
                   esam@sam.sa
                 </a>
                 <a href="tel:+966536211111" className={`${styles.contactLink} ${styles.phoneLink}`} dir="ltr">
-                  <span className={styles.contactIcon}>📱︎</span>
+                  <FaPhoneAlt className={styles.contactIcon} />
                   +966 53 621 1111
                 </a>
               </div>
