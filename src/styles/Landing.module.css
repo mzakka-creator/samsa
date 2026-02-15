@@ -6,6 +6,91 @@
   color: #1a1a1a;
 }
 
+/* Logo Section */
+.logoSection {
+  padding: 3rem 2rem 2rem;
+  background: #ffffff;
+  text-align: center;
+}
+
+.logoSectionInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainLogo {
+  width: 100%;
+  height: auto;
+  max-width: 280px;
+  object-fit: contain;
+}
+
+/* Content Section */
+.contentSection {
+  padding: 2rem 3rem 4rem;
+  background: #ffffff;
+}
+
+.contentBlock {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+}
+
+.contentBlock:last-child {
+  margin-bottom: 0;
+}
+
+.contentText {
+  font-family: inherit;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #1a1a1a;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  text-align: center;
+}
+
+.contentBlock[dir="ltr"] .contentText {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.contentBlock[dir="rtl"] .contentText {
+  font-family: 'El Messiri', 'Cairo', sans-serif;
+}
+
+/* Brands Section */
+.brandsSection {
+  padding: 0 3rem 4rem;
+  background: #ffffff;
+}
+
+.brandsSection .subsidiaryBrandCard {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.brandsSection .subsidiaryBrandCard::before {
+  display: none;
+}
+
+.brandsSection .subsidiaryBrandCard:hover {
+  border-color: transparent;
+  transform: none;
+  box-shadow: none;
+}
+
+.brandsSection .brandLogoContainer {
+  margin-bottom: 0;
+  width: 200px;
+  height: 200px;
+}
+
 /* Header */
 .header {
   position: fixed;
