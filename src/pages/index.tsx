@@ -142,7 +142,6 @@ export default function Home() {
             </div>
             <nav className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ''}`}>
               <a href="#about" className={styles.navLink} onClick={closeMobileMenu}>{t.nav.about}</a>
-              <a href="#brands" className={styles.navLink} onClick={closeMobileMenu}>{t.nav.partners}</a>
               <a href="#contact" className={styles.navLink} onClick={closeMobileMenu}>{t.nav.contact}</a>
             </nav>
             <div className={styles.headerActions}>
