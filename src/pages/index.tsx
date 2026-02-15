@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>SAM SA - Excellence in Business Solutions</title>
+        <title>SAM SA</title>
         <meta name="description" content="SAM SA - Leading company in the advertising and artistic industries, with over 30 years of experience." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={logo.src} type="image/png" />
