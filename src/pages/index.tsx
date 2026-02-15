@@ -28,7 +28,7 @@ export default function Home() {
         <title>SAM SA - Excellence in Business Solutions</title>
         <meta name="description" content="SAM SA - Leading company in the advertising and artistic industries, with over 30 years of experience." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={logo.src} type="image/png" />
       </Head>
 
       <div className={styles.container}>
