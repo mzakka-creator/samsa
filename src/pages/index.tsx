@@ -39,8 +39,8 @@ export default function Home() {
               src={logo}
               alt="SAM SA Logo"
               className={styles.mainLogo}
-              width={280}
-              height={140}
+              width={150}
+              height={75}
               priority
             />
           </div>
